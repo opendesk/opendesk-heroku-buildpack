@@ -17,7 +17,6 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 ENV_DIR=$3
 
-
 CACHED_DIRS=".heroku"
 
 # Static configurations for virtualenv caches.
@@ -240,7 +239,6 @@ fi
 # Install dependencies with Pip.
 puts-step "Installing dependencies with pip"
 
-
 [ ! "$FRESH_PYTHON" ] && bpwatch start pip_install
 [ "$FRESH_PYTHON" ] && bpwatch start pip_install_first
 
@@ -264,7 +262,6 @@ set-env LD_LIBRARY_PATH '/app/.heroku/vendor/lib:/app/.heroku/python/lib:$LD_LIB
 set-default-env LANG en_US.UTF-8
 set-default-env PYTHONHASHSEED random
 set-default-env PYTHONPATH /app/
-
 
 # Experimental post_compile hook.
 bpwatch start post_compile
