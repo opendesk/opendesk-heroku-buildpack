@@ -249,11 +249,6 @@ puts-step "Installing dependencies with pip"
 [ ! "$FRESH_PYTHON" ] && bpwatch stop pip_install
 [ "$FRESH_PYTHON" ] && bpwatch stop pip_install_first
 
-# Django collectstatic support.
-bpwatch start collectstatic
-  sub-env $BIN_DIR/steps/collectstatic
-bpwatch stop collectstatic
-
 # ### Finalize
 #
 
