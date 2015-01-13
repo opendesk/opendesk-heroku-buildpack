@@ -12,7 +12,9 @@ puts-step "Installing dependencies with pip"
 /app/.heroku/python/bin/pip install setuptools==0.8
 /app/.heroku/python/bin/pip install setuptools_git==1.1
 /app/.heroku/python/bin/pip install -r requirements.txt --exists-action=w --src=./.heroku/src --allow-all-external  | cleanup | indent
-/app/.heroku/python/bin/pip install -e .
+/app/.heroku/python/bin/pip install -e fabbed
+/app/.heroku/python/bin/pip install -e fabhub
+/app/.heroku/python/bin/pip install -e opendesk
 
 # Smart Requirements handling
 cp requirements.txt .heroku/python/requirements-declared.txt
