@@ -5,7 +5,7 @@ PYTHON_VERSION=$(cat runtime.txt)
 if [ -f .heroku/python-version ]; then
   if [ ! $(cat .heroku/python-version) = $PYTHON_VERSION ]; then
     bpwatch start uninstall_python
-      puts-step "Found runtime $(cat .heroku/python-version), removing"
+      puts-step "Found $(cat .heroku/python-version), removing"
       rm -fr .heroku/python
     bpwatch stop uninstall_python
   else
@@ -15,7 +15,6 @@ fi
 
 if [ ! $STACK = $CACHED_PYTHON_STACK ]; then
   bpwatch start uninstall_python
-    puts-step "Stack changed, re-installing runtime"
     rm -fr .heroku/python .heroku/python-stack .heroku/vendor
     unset SKIP_INSTALL
   bpwatch stop uninstall_python
@@ -24,12 +23,12 @@ fi
 
 if [ ! "$SKIP_INSTALL" ]; then
   bpwatch start install_python
-    puts-step "Installing runtime ($PYTHON_VERSION)"
+    puts-step "Installing $PYTHON_VERSION"
 
     # Prepare destination directory.
     mkdir -p .heroku/python
 
-    curl http://lang-python.s3.amazonaws.com/$STACK/runtimes/$PYTHON_VERSION.tar.gz -s | tar zxv -C .heroku/python &> /dev/null
+    curl https://lang-python.s3.amazonaws.com/$STACK/runtimes/$PYTHON_VERSION.tar.gz -s | tar zxv -C .heroku/python &> /dev/null
     if [[ $? != 0 ]] ; then
       puts-warn "Requested runtime ($PYTHON_VERSION) is not available for this stack ($STACK)."
       puts-warn "Aborting.  More info: https://devcenter.heroku.com/articles/python-support"
