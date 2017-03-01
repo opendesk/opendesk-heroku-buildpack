@@ -21,9 +21,9 @@ set +e
 PIP_STATUS="${PIPESTATUS[0]}"
 set -e
 
-/app/.heroku/python/bin/pip install --force-reinstall -e fabbed
-/app/.heroku/python/bin/pip install --force-reinstall -e fabhub
-/app/.heroku/python/bin/pip install --force-reinstall -e opendesk
+/app/.heroku/python/bin/pip install --exists-action=w --force-reinstall -e fabbed
+/app/.heroku/python/bin/pip install --exists-action=w --force-reinstall -e fabhub
+/app/.heroku/python/bin/pip install --exists-action=w --force-reinstall -e opendesk
 
 show-warnings
 
